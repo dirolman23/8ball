@@ -91,6 +91,18 @@ async def sarcastic_off(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_modes[chat_id] = "normal"
     await update.message.reply_text("🎱 Обычный режим включен")
 
+if sarcasm_mode:
+    # объединяем оба списка
+    combined = answers + sarcastic_answers
+
+    # можно задать шанс (например 60% сарказм, 40% обычный)
+    if random.random() < 0.6:
+        answer = random.choice(sarcastic_answers)
+    else:
+        answer = random.choice(answers)
+else:
+    answer = random.choice(answers)
+
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
 
