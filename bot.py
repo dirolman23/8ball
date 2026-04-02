@@ -6,7 +6,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 TOKEN = "8109175665:AAGrinITZ3JUsteO_V0bBGcAiIRJ7FDCsx8"
 
 import os
-TOKEN = os.getenv("TOKEN")
+TOKEN = os.getenv("8109175665:AAGrinITZ3JUsteO_V0bBGcAiIRJ7FDCsx8")
 
 answers = [
     "Да",
