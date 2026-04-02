@@ -66,20 +66,33 @@ async def eight_ball(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await asyncio.sleep(2)
 
+  async def eight_ball(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_id = update.effective_chat.id
+
+    if not context.args:
+        await update.message.reply_text(
+            "Задай вопрос 😄\nПример:\n/8ball Я стану богатым?"
+        )
+        return
+
+    msg = await update.message.reply_text("🎱 Думаю...")
+
+    await asyncio.sleep(2)
+
     # 1% шанс легендарного ответа
     if random.randint(1, 100) == 1:
         answer = random.choice(legendary_answers)
     else:
         mode = user_modes.get(chat_id, "normal")
 
-       if mode == "sarcastic":
-    # 60% сарказм, 40% обычные ответы
-    if random.random() < 0.6:
-        answer = random.choice(sarcastic_answers)
-    else:
-        answer = random.choice(normal_answers)
-else:
-    answer = random.choice(normal_answers)
+        if mode == "sarcastic":
+            # 60% сарказм, 40% обычные
+            if random.random() < 0.6:
+                answer = random.choice(sarcastic_answers)
+            else:
+                answer = random.choice(normal_answers)
+        else:
+            answer = random.choice(normal_answers)
 
     await msg.edit_text(f"🎱 {answer}")
 
