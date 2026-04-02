@@ -4,7 +4,7 @@ import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("8109175665:AAGrinITZ3JUsteO_V0bBGcAiIRJ7FDCsx8")  # для Railway / хостинга
+TOKEN = os.getenv("TOKEN")  # для Railway / хостинга
 
 # Обычные ответы
 normal_answers = [
