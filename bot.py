@@ -95,6 +95,7 @@ if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("8ball", eight_ball))
+    app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("sarcasm_on", sarcastic_on))
     app.add_handler(CommandHandler("sarcasm_off", sarcastic_off))
 
