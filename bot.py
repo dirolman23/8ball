@@ -4,7 +4,7 @@ import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("TOKEN")  # для Railway / хостинга
+TOKEN = os.getenv("TOKEN")
 
 # Обычные ответы
 normal_answers = [
@@ -41,18 +41,16 @@ legendary_answers = [
     "⚡ СУДЬБА НА ТВОЕЙ СТОРОНЕ"
 ]
 
+# Режимы пользователей
+user_modes = {}
 
-# ✅ команда /start
+# /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "Задай вопрос 😄\n\nПример:\n/8ball Я стану богатым?"
     )
 
-
-# Режимы пользователей (чат_id: режим)
-user_modes = {}
-
-# Команда /8ball
+# /8ball
 async def eight_ball(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
 
@@ -63,20 +61,6 @@ async def eight_ball(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     msg = await update.message.reply_text("🎱 Думаю...")
-
-    await asyncio.sleep(2)
-
-  async def eight_ball(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    chat_id = update.effective_chat.id
-
-    if not context.args:
-        await update.message.reply_text(
-            "Задай вопрос 😄\nПример:\n/8ball Я стану богатым?"
-        )
-        return
-
-    msg = await update.message.reply_text("🎱 Думаю...")
-
     await asyncio.sleep(2)
 
     # 1% шанс легендарного ответа
@@ -108,13 +92,11 @@ async def sarcastic_off(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_modes[chat_id] = "normal"
     await update.message.reply_text("🎱 Обычный режим включен")
 
-
-
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TOKEN).build()
 
-    app.add_handler(CommandHandler("8ball", eight_ball))
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("8ball", eight_ball))
     app.add_handler(CommandHandler("sarcasm_on", sarcastic_on))
     app.add_handler(CommandHandler("sarcasm_off", sarcastic_off))
 
