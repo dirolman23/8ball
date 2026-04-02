@@ -47,7 +47,7 @@ user_modes = {}
 # /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "Задай вопрос 😄\n\nПример:\n/8ball Я стану богатым?"
+        "Задай вопрос Шару Восьмёрке 😄\n\nПример:\n/8ball Я стану богатым?"
     )
 
 # /8ball
